@@ -120,10 +120,10 @@
              else
                comment = ''
             end
-          print ('          <div class="tr">')
-          print ('            <div class="td right" width="' .. split .. '%"> ' .. label .. ' :' .. comment .. ' </div>')
-          print ('            <div class="td left"> ' .. value .. dummy .. ' </div>')
-          print ('          </div>')
+          write ('          <div class="tr">')
+          write ('            <div class="td right" width="' .. split .. '%"> ' .. label .. ' :' .. comment .. ' </div>')
+          write ('            <div class="td left"> ' .. value .. dummy .. ' </div>')
+          write ('          </div>')
        end
 
      function bar_line (lbl_main, lbl_sub1, lbl_sub2, value, unit, low, high)
@@ -133,17 +133,17 @@
           if tonumber (value) > high then
                value = high
             end
-          print ('          <div class="tr">')
-          print ('            <div class="td right" width="33%">')
-          print ('              ' .. lbl_main .. ' : <br> <font size="-2"> ' .. lbl_sub1 .. ' &nbsp; <br> ' .. lbl_sub2 .. ' &nbsp; </font>')
-          print ('            </div>')
-          print ('            <div class="td">')
-          print ('              <div class="cbi-progressbar" title="' .. value .. unit .. '">')
-          print ('                <div style="width:' .. (value - low) * 100 / (high - low) .. '%"> </div>')
-          print ('              </div>')
-          print ('              <font size="-2"> <div style="float:left"> ' .. low .. unit .. ' </div> <div style="float:right"> ' .. high .. unit .. ' </div> </font>')
-          print ('            </div>')
-          print ('          </div>')
+          write ('          <div class="tr">')
+          write ('            <div class="td right" width="33%">')
+          write ('              ' .. lbl_main .. ' : <br> <font size="-2"> ' .. lbl_sub1 .. ' &nbsp; <br> ' .. lbl_sub2 .. ' &nbsp; </font>')
+          write ('            </div>')
+          write ('            <div class="td">')
+          write ('              <div class="cbi-progressbar" title="' .. value .. unit .. '">')
+          write ('                <div style="width:' .. (value - low) * 100 / (high - low) .. '%"> </div>')
+          write ('              </div>')
+          write ('              <font size="-2"> <div style="float:left"> ' .. low .. unit .. ' </div> <div style="float:right"> ' .. high .. unit .. ' </div> </font>')
+          write ('            </div>')
+          write ('          </div>')
        end
 -%>
 
@@ -174,21 +174,21 @@
 <%-
      if connection then
           local tag=''
---          print ('  <div id="view">')
---          print ('    <div class="cbi-section fade-in" style>')
---          print ('      <h3>Cellular Network Information</h3>')
---          print ('      <div>')
---          print ('        <div class="table">')
+--          write ('  <div id="view">')
+--          write ('    <div class="cbi-section fade-in" style>')
+--          write ('      <h3>Cellular Network Information</h3>')
+--          write ('      <div>')
+--          write ('        <div class="table">')
 --          text_line (55, 'Network carrier', nil, 'Telekom Deutschland')
---          print ('        </div>')
---          print ('      </div>')
---          print ('    </div>')
---          print ('  </div>')
-          print ('  <div id="view">')
-          print ('    <div class="cbi-section fade-in" style>')
-          print ('      <h3>Current Connection Status</h3>')
-          print ('      <div>')
-          print ('        <div class="table">')
+--          write ('        </div>')
+--          write ('      </div>')
+--          write ('    </div>')
+--          write ('  </div>')
+          write ('  <div id="view">')
+          write ('    <div class="cbi-section fade-in" style>')
+          write ('      <h3>Current Connection Status</h3>')
+          write ('      <div>')
+          write ('        <div class="table">')
           text_line (33, 'Type of cellular connection', nil, type)
           if type == 'LTE' then
                text_line (33, 'Resource blocks', '(estimated)', math.floor (10 ^ ((rssi - rsrp) / 10) / 12))
@@ -211,28 +211,27 @@
                bar_line ('Downlink carrier-to-interference ratio (EC/IO)', '(signal quality)', '',
                          0 - ecio, ' dB', -30, 0)
             end
-          print ('        </div>')
-          print ('      </div>')
-          print ('    </div>')
-          print ('  </div>')
-          print ('  <div id="view">')
-          print ('    <div class="cbi-section fade-in" style>')
-          print ('      <h3>Current Cell Location Information</h3>')
-          print ('      <div>')
-          print ('        <div class="table">')
-          print ('          <div class="tr">')
-          print ('            <div class="td left">')
-          print (cells)
-          print ('            </div>')
-          print ('          </div>')
-          print ('        </div>')
-          print ('      </div>')
-          print ('    </div>')
-          print ('  </div>')
-          print ('</div>')
+          write ('        </div>')
+          write ('      </div>')
+          write ('    </div>')
+          write ('  </div>')
+          write ('  <div id="view">')
+          write ('    <div class="cbi-section fade-in" style>')
+          write ('      <h3>Current Cell Location Information</h3>')
+          write ('      <div>')
+          write ('        <div class="table">')
+          write ('          <div class="tr">')
+          write ('            <div class="td left">')
+          write (cells)
+          write ('            </div>')
+          write ('          </div>')
+          write ('        </div>')
+          write ('      </div>')
+          write ('    </div>')
+          write ('  </div>')
+          write ('</div>')
         else
-          print ('  <h3>Disconnected: No network connection has been made.</h2>')
+          write ('  <h3>Disconnected: No network connection has been made.</h2>')
        end
 -%>
 
-<%+footer%>
